@@ -5,7 +5,9 @@
   margin: 0;
   padding: 0;
 }
+html,body{height:100%;}
 body{
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
      height: 100%;
     background-color: #FDFBF7;
 }
@@ -13,12 +15,161 @@ body{
     header{
         width: 100%;
         height: 126px;
-        background-color: aquamarine;
+        
+        /* background-color: aquamarine; */
         /* opacity: 0; */
         position: fixed; top: 0; left: 0;
+        display:flex;
+        align-items:center;
+        z-index:10;
+        padding-left:75px;      
     }
+        .logoText{
+            font-family:'EB Garamond',serif;
+            font-size:45px;
+            font-weight: 400;  
+            line-height:1;           
+            text-decoration:none;
+            letter-spacing:.5px;
+            color: rgb(255, 255, 255);
+        }
+        header a,
+        header .lang{
+            font-size: 20px;
+            color:#fff;
+            text-decoration:none;
+            background:none;
+            border:0;
+            cursor:pointer;
+            padding:0 26px
+        }
+        .main-nav{
+            display:flex;
+            align-items:center;
+            gap:45px;                   
+            margin-left:auto;           
+            margin-right:26px;          
+        }
+        
+         .lang{ padding:0 8px; }                   
+
+        @media (min-width:1024px){
+            .lang{ transform:translateY(2px); }     
+}
+
     .hero_img{
         width: 100%;
         height: 100vh;
-         background:url('./img/Hero_img.png') center/cover no-repeat;
+        background:url('./img/Hero_img.png') center/cover no-repeat;
+        display:flex;
+        align-items:center;
+        padding-left:120px;
     }
+        .hero_inner{
+        /* вертикальная колонка: слоган над кнопкой */
+            display:flex;
+            flex-direction:column;
+            gap:40px;                    /* зазор между h1 и кнопкой */
+        }
+            .hero_inner h1{
+                font-family:'EB Garamond',serif;
+                font-weight:400;
+                font-size:120px;             /* как в макете */
+                line-height:1.08;            /* чуть теснее, чем 1.1 */
+                color:#fff;
+                max-width:830px;             /* ограничиваем строку */
+                text-shadow:0 2px 4px rgba(0,0,0,.35); /* читаемость */
+            }
+            @media (max-width:1280px){
+                .hero_inner h1{
+                    font-size:clamp(56px, 8vw, 100px);
+                }
+            }
+            .btn{
+                align-self:flex-start;       /* остаётся на левой колонке */
+                padding:18px 40px;
+                background:#007672;
+                color:#fff;
+                font:20px/1.1 'Segoe UI',sans-serif;
+                text-decoration:none;
+                border-radius:6px;
+                transition:background .2s;
+            }
+            .btn:hover{background:#058e88;}
+
+            /* «бургер»; по умолчанию скрыт, покажем в медиа */
+            .burger{
+            display:none;
+            background:none;
+            border:0;
+            color:#fff;
+            font-size:32px;
+            line-height:1;
+            cursor:pointer;
+            }
+
+
+
+@media (max-width: 767px) {
+
+  /* фикс-шапка */
+  header           { height: 64px; padding-left: 24px; }
+  .logoText        { font-size: 28px; }
+  .main-nav,
+  .lang            { display: none; }     /* прячем меню + RU/EN   */
+  .burger          { display: block; }    /* показываем бургер     */
+
+  /* hero-блок */
+  .hero_img        { height: calc(100vh - 64px); padding-left: 24px; }
+  .hero_inner h1   { font-size: clamp(40px, 10vw, 56px); max-width: 90%; }
+  .btn             { font-size: 16px; padding: 14px 32px; }
+}
+
+/* ---------------------------------------------------------------
+   НОУТ / ЛАПТОП 768 – 1023 px
+   (бургер остаётся, большое меню скрыто)
+   ------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  header           { height: 96px; padding-left: 56px; }
+  .logoText        { font-size: 36px; }
+
+  .main-nav        { display: none; }     /* меню прячем            */
+  .burger          { display: block; }
+  .lang            { display: none; }
+
+  .hero_img        { height: calc(100vh - 96px); padding-left: 56px; }
+  .hero_inner h1   { font-size: clamp(56px, 7vw, 90px); max-width: 680px; }
+  .btn             { font-size: 18px; padding: 16px 36px; }
+}
+
+/* ---------------------------------------------------------------
+   ЛАГЕР / ДО 1150 px  (усужаем gap, убираем RU/EN, бургер виден)
+   ------------------------------------------------------------- */
+@media (max-width: 1150px) {
+
+  .main-nav {
+    gap: clamp(12px, 2vw, 24px);    /* 24 – 12 px */
+    margin-right: clamp(12px, 3vw, 24px);
+  }
+  .main-nav a      { padding: 0; }  /* без 26 px внутр. паддинга   */
+  .lang            { display: none; }
+  .burger          { display: block; }
+}
+
+/* ---------------------------------------------------------------
+   ДЕСКТОП ≥ 1280 px
+   ------------------------------------------------------------- */
+@media (min-width: 1280px) {
+
+  header           { height: 126px; padding-left: 120px; }
+  .logoText        { font-size: 45px; }
+
+  .main-nav        { display: flex; gap: 45px; margin-right: 26px; }
+  .lang            { display: inline-block; transform: translateY(2px); }
+  .burger          { display: none; }
+
+  .hero_img        { height: calc(100vh - 126px); padding-left: 120px; }
+  .hero_inner h1   { font-size: 120px; max-width: 830px; }
+  .btn             { font-size: 20px; padding: 18px 40px; }
+}
