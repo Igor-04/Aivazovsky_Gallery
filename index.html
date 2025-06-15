@@ -13,10 +13,9 @@
 <body>
     <header>
         <a href="#" class="logoText">Айвазовский</a>
-        <!-- <button class="burger" aria-label="Открыть меню">
-           
-            ☰
-        </button> -->
+        <button class="burger" aria-label="Открыть меню">
+            <span></span><span></span><span></span>
+        </button>
         <nav class="main-nav">
             <a href="#gallery">Галерея работ</a>
             <a href="#news">Новости</a>
@@ -30,9 +29,35 @@
         <div class="hero_inner">
             <h1>Откройте&nbsp;море<br>Айвазовского</h1>
             <a class="btn" href="#tickets">Купить билет</a>
-
-            
         </div>
     </section>
+
+   <!-- ====================  Г А Л Е Р Е Я  ==================== -->
+    <section id="gallery" class="gallery">
+
+  <!-- общий контейнер фикс-ширины 1274 px -->
+    <div class="gallery-wrap">
+
+    <!-- заголовок + ссылка -->
+    <div class="gallery-head">
+      <h2>Галерея работ</h2>
+      <a href="#" class="view-all">Смотреть&nbsp;все</a>
+    </div>
+
+    <!-- сетка 1-2-4 картин -->
+    <div class="gallery-grid">
+      <figure class="art big"><img src="./img/1.webp" alt=""></figure>
+
+      <figure class="art mid top"><img src="./img/2.webp" alt=""></figure>
+      <figure class="art mid bot"><img src="./img/3.jpg"  alt=""></figure>
+
+      <figure class="art sm s1"><img src="./img/4.jpg"  alt=""></figure>
+      <figure class="art sm s2"><img src="./img/5.jpg"  alt=""></figure>
+      <figure class="art sm s3"><img src="./img/6.jpg"  alt=""></figure>
+      <figure class="art sm s4"><img src="./img/7.jpg"  alt=""></figure>
+    </div>
+
+  </div>
+</section>
 </body>
 </html>

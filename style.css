@@ -5,11 +5,11 @@
   margin: 0;
   padding: 0;
 }
-html,body{height:100%;}
+
 body{
     font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-     height: 100%;
-    background-color: #FDFBF7;
+    height: 100%;
+    background-color: #FFFBF2;
 }
 
     header{
@@ -18,7 +18,8 @@ body{
         
         /* background-color: aquamarine; */
         /* opacity: 0; */
-        position: fixed; top: 0; left: 0;
+        position: absolute; 
+        top: 0; left: 0;
         display:flex;
         align-items:center;
         z-index:10;
@@ -54,8 +55,27 @@ body{
          .lang{ padding:0 8px; }                   
 
         @media (min-width:1024px){
-            .lang{ transform:translateY(2px); }     
-}
+            .lang{ transform:translateY(2px); }    
+            }
+            .burger{
+                display:none;                 /* покажем в media */
+                margin-left:auto;             /* толкает к правому краю */
+                padding:0 24px;               /* «ожерелье» справа 24 px */
+                height:64px;                  /* такая же высота, как моб-шапка */
+                background:none;border:0;cursor:pointer;
+                }
+
+                /* три полоски */
+            .burger span{
+                display:block;width:24px;height:2px;
+                background:#fff;margin:5px 0;transition:.25s;
+                }
+
+                /* небольшой hover-эффект */
+            .burger:hover span{
+                background:#ffd98c;
+            }
+                
 
     .hero_img{
         width: 100%;
@@ -109,6 +129,88 @@ body{
             }
 
 
+     /* ========== ГАЛЕРЕЯ РАБОТ ==========        */
+    /* --- секция --- */
+/* ---------- Секция ---------- */
+.gallery{
+  padding:120px 0;
+  background:#FDFBF7;
+}
+
+/* ---------- Контейнер 1274 px ---------- */
+.gallery-wrap{
+  width:1274px;                      /* 468 + 287 + 222 + 222 + 3×15  */
+  margin:0 auto;                     /* центрируем в окне            */
+}
+
+/* ---------- Заголовок + ссылка ---------- */
+.gallery-head{
+  display:flex;
+  align-items:flex-end;
+  margin-bottom:48px;
+}
+.gallery-head h2{
+  font:64px/1 'EB Garamond',serif;
+}
+.view-all{
+  margin-left:auto;                  /* толкаем к правому краю wrap  */
+  font:20px 'EB Garamond',serif;
+  color:#007672;text-decoration:none;
+}
+.view-all:hover{opacity:.7;}
+
+/* ---------- Жёсткая сетка 1-2-4 ---------- */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:508px 287px 222px 222px;
+  grid-template-rows:204px 204px;    /* 2 строки по 204              */
+  gap:15px;
+}
+
+/* позиционирование */
+.big        {grid-column:1/2;grid-row:1/3;}   /* 468×422 (2 строки) */
+.mid.top    {grid-column:2/3;grid-row:1/2;}   /* 287×204 */
+.mid.bot    {grid-column:2/3;grid-row:2/3;}
+.sm.s1      {grid-column:3/4;grid-row:1/2;}   /* 222×203 */
+.sm.s2      {grid-column:4/5;grid-row:1/2;}
+.sm.s3      {grid-column:3/4;grid-row:2/3;}
+.sm.s4      {grid-column:4/5;grid-row:2/3;}
+
+/* изображение заполняет ячейку */
+.art img{
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
+
+/* ---------- Адаптив ≤1023 px: плитка ---------- */
+@media (max-width:1023px){
+  .gallery{padding:96px 24px 0;}
+  .gallery-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:24px;
+  }
+  .gallery-head h2{font-size:48px;}
+
+  .gallery-wrap{width:100%;}
+  .gallery-grid{
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    grid-auto-rows:1fr;             /* плитка                       */
+  }
+  .art{grid-area:auto!important;}   /* снимаем фикс-позицию         */
+}
+
+/* ---------- Мобильный ≤767 px ---------- */
+@media (max-width:767px){
+  .gallery{padding:64px 24px 0;}
+  .gallery-head h2{font-size:36px;}
+  .view-all{font-size:18px;}
+}
+            
+
+
 
 @media (max-width: 767px) {
 
@@ -131,45 +233,70 @@ body{
    ------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1023px) {
 
-  header           { height: 96px; padding-left: 56px; }
-  .logoText        { font-size: 36px; }
+  /* ---------- HEADER ---------- */
+  header      { height: 96px; padding-left: 56px; }
+  .logoText   { font-size: 36px; }           /* было 56 → стало 36 */
 
-  .main-nav        { display: none; }     /* меню прячем            */
-  .burger          { display: block; }
-  .lang            { display: none; }
+  .main-nav   { display: none; }
+  .burger     { display: block; }            /* бургер виден */
+  .lang       { display: none; }
 
-  .hero_img        { height: calc(100vh - 96px); padding-left: 56px; }
-  .hero_inner h1   { font-size: clamp(56px, 7vw, 90px); max-width: 680px; }
-  .btn             { font-size: 18px; padding: 16px 36px; }
+  /* ---------- HERO ---------- */
+  .hero_img   {
+    height: calc(100vh - 96px);              /* учли шапку */
+    padding-left: 56px;
+  }
+
+  .hero_inner h1{
+    font-size: clamp(56px, 8vw, 90px);       /* гибкий диапазон */
+    max-width: 680px;
+  }
+
+  .btn        { font-size: 18px; padding: 16px 36px; }  /* чуть меньше */
 }
 
 /* ---------------------------------------------------------------
    ЛАГЕР / ДО 1150 px  (усужаем gap, убираем RU/EN, бургер виден)
    ------------------------------------------------------------- */
-@media (max-width: 1150px) {
+@media (min-width: 1151px) and (max-width: 1279px){
 
-  .main-nav {
-    gap: clamp(12px, 2vw, 24px);    /* 24 – 12 px */
-    margin-right: clamp(12px, 3vw, 24px);
+  /* 1. нормальная высота и отступы у шапки */
+  header        { height: 126px; padding-left: 96px; }  /* можно 75–120 px */
+
+  /* 2. логотип чуть меньше, чтобы места хватило */
+  .logoText     { font-size: 40px; }
+
+  /* 3. меню: динамический gap + убираем внутренний padding у ссылок */
+  .main-nav{
+    display:flex; align-items:center;
+    gap: clamp(22px, 4vw, 36px);         /* 22–36 px плавно */
+    margin-right: clamp(14px, 2vw, 26px);
   }
-  .main-nav a      { padding: 0; }  /* без 26 px внутр. паддинга   */
-  .lang            { display: none; }
-  .burger          { display: block; }
+  .main-nav a  { padding: 0; }
+
+  /* 4. RU/EN оставляем, но без translateY */
+  .lang        { display:inline-block; transform:none; padding:0 8px; }
+
+  /* 5. бургер здесь не нужен */
+  .burger      { display:none; }
+
+  /* hero-блок вычитаем 126 px */
+  .hero_img    { height: calc(100vh - 126px); padding-left: 96px; }
+  .hero_inner h1{
+    font-size: clamp(90px, 7vw, 110px);
+    max-width: 760px;
+  }
 }
 
-/* ---------------------------------------------------------------
-   ДЕСКТОП ≥ 1280 px
-   ------------------------------------------------------------- */
-@media (min-width: 1280px) {
+/* ---------- десктоп ≥1280 px  (исправили высоту шапки) ---------- */
+@media (min-width: 1280px){
 
-  header           { height: 126px; padding-left: 120px; }
-  .logoText        { font-size: 45px; }
+  header        { height: 126px; padding-left: 120px; } /* не 100vh! */
+  .logoText     { font-size: 45px; }
 
-  .main-nav        { display: flex; gap: 45px; margin-right: 26px; }
-  .lang            { display: inline-block; transform: translateY(2px); }
-  .burger          { display: none; }
+  .main-nav     { gap: 45px; margin-right: 26px; }
+  .lang         { transform: translateY(2px); }
 
-  .hero_img        { height: calc(100vh - 126px); padding-left: 120px; }
-  .hero_inner h1   { font-size: 120px; max-width: 830px; }
-  .btn             { font-size: 20px; padding: 18px 40px; }
+  .hero_img     { height: 100vh ; }
+  .hero_inner h1{ font-size: 120px; max-width: 830px; }
 }
