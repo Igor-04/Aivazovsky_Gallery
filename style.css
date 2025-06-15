@@ -178,10 +178,26 @@ body{
 
 /* изображение заполняет ячейку */
 .art img{
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   object-fit:cover;
   border-radius:12px;
   display:block;
+  transition:transform .45s ease;   /* плавный зум */
+  will-change:transform;            /* подсказка браузеру */
+}
+.art{
+  position:relative;
+  overflow:hidden;             /* обрезаем лишнее при scale */
+  border-radius:12px;
+}
+
+
+
+.art:hover img{
+    transform:scale(1.07);       
+ 
+    /* filter:brightness(1.1); */
 }
 
 /* ---------- Адаптив ≤1023 px: плитка ---------- */
