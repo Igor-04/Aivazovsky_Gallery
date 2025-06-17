@@ -136,18 +136,29 @@ body{
               /* Шторка */
               .mobile-menu{
                 position:fixed;top:0;right:0;bottom:0;width:280px;
-                background:#0A2940;               /* тот же цвет шапки */
-                padding:100px 24px;               /* отступ сверху = высота шапки */
-                display:flex;flex-direction:column;gap:32px;
-                transform:translateX(100%);       /* прячем за экраном */
-                transition:transform .35s ease;
+                background:rgba(10,41,64,.85);           /* тёмно-синий 95% */
+                backdrop-filter:blur(15px);               /* лёгкий blur */
+                box-shadow:-8px 0 24px rgba(0,0,0,.35);  /* тень слева */
+                padding:100px 32px 32px;                 /* сверху = высота шапки */
+                display:flex;flex-direction:column;gap:28px;
+                transform:translateX(100%);
+                transition:transform .45s cubic-bezier(.22,.61,.36,1);
                 z-index:80;
-              }
+}
               .mobile-menu a,
               .mobile-menu .lang{
-                font:20px 'EB Garamond',serif;
+                font:22px 'EB Garamond',serif;
                 color:#fff;text-decoration:none;
+                padding-bottom:18px;
+                border-bottom:1px solid rgba(255,255,255,.08);
               }
+              .mobile-menu a:last-child,
+                .mobile-menu .lang{border:none;}            /* убираем линию у последнего */
+
+                .mobile-menu a:active,
+                .mobile-menu .lang:active{
+                  background:rgba(255,255,255,.1);
+                }
 
               /* затемнение */
               .menu-overlay{
