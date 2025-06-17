@@ -23,7 +23,7 @@ body{
         display:flex;
         align-items:center;
         z-index:10;
-        padding-left:75px;      
+        padding-left: 1px;      
     }
         .logoText{
             font-family:'EB Garamond',serif;
@@ -138,8 +138,8 @@ body{
                 position:fixed;top:0;right:0;bottom:0;width:280px;
                 background:rgba(10,41,64,.70);           /* тёмно-синий 75% */
                 backdrop-filter:blur(15px);               /* лёгкий blur */
-                box-shadow:-8px 0 24px rgba(0,0,0,.35);  /* тень слева */
-                padding:100px 32px 32px;                 /* сверху = высота шапки */
+                box-shadow:-5px 0 54px rgba(0,0,0,.55);  /* тень слева */
+                padding:50px 32px 32px;                 /* сверху = высота шапки */
                 display:flex;flex-direction:column;gap:28px;
                 transform:translateX(100%);
                 transition:transform .45s cubic-bezier(.22,.61,.36,1);
@@ -260,7 +260,7 @@ body{
 @media (max-width: 767px) {
 
   /* фикс-шапка */
-  header           { height: 64px; padding-left: 24px; }
+  header           { height: 64px; padding-left: 1px; }
   .logoText        { font-size: 28px; }
   .main-nav,
   .lang            { display: none; }     /* прячем меню + RU/EN   */
@@ -279,7 +279,7 @@ body{
 @media (min-width: 768px) and (max-width: 1023px) {
 
   /* ---------- HEADER ---------- */
-  header      { height: 96px; padding-left: 56px; }
+  header      { height: 96px; padding-left: 25px; }
   .logoText   { font-size: 36px; }           /* было 56 → стало 36 */
 
   .main-nav   { display: none; }
@@ -336,7 +336,7 @@ body{
 /* ---------- десктоп ≥1280 px  (исправили высоту шапки) ---------- */
 @media (min-width: 1280px){
 
-  header        { height: 126px; padding-left: 120px; } /* не 100vh! */
+  header        { height: 126px; padding-left: 95px; } /* не 100vh! */
   .logoText     { font-size: 45px; }
 
   .main-nav     { gap: 45px; margin-right: 26px; }
@@ -344,4 +344,9 @@ body{
 
   .hero_img     { height: 100vh ; }
   .hero_inner h1{ font-size: 120px; max-width: 830px; }
+}
+/* в самый конец style.css */
+body.no-scroll{
+  overflow:hidden;
+  touch-action:none;        /* фикс для iOS Safari */
 }

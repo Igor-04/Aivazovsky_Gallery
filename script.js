@@ -9,6 +9,8 @@ function toggleMenu() {
   burger.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', open);
   overlay.hidden = !open;
+   document.body.classList.toggle('no-scroll', open);
+
 }
 
 burger.addEventListener('click', toggleMenu);
