@@ -136,7 +136,7 @@ body{
               /* Шторка */
               .mobile-menu{
                 position:fixed;top:0;right:0;bottom:0;width:280px;
-                background:rgba(10,41,64,.85);           /* тёмно-синий 95% */
+                background:rgba(10,41,64,.70);           /* тёмно-синий 75% */
                 backdrop-filter:blur(15px);               /* лёгкий blur */
                 box-shadow:-8px 0 24px rgba(0,0,0,.35);  /* тень слева */
                 padding:100px 32px 32px;                 /* сверху = высота шапки */
