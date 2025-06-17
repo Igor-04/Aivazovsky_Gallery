@@ -144,6 +144,7 @@ body{
                 display:flex;flex-direction:column;gap:28px;
                 transform:translateX(100%);
                 transition:transform .45s cubic-bezier(.22,.61,.36,1);
+                will-change:transform;
                 touch-action:pan-y;   /* разрешаем горизонтальный drag внутри */
                 z-index:80;
 }

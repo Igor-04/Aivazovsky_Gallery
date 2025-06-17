@@ -20,44 +20,45 @@ document.addEventListener('DOMContentLoaded', () => {
   links  .forEach(el => el.addEventListener('click', () => setOpen(false)));
 
   /* ---------- DRAG-закрытие (начинать можно на overlay или в меню) ---------- */
-  let dragging = false;
-  let startX   = 0;
-  let drawerW  = 0;
+  let dragging = false, startX = 0, drawerW = 0;
 
-  /* назначим одну и ту же функцию двум элементам */
-  [drawer, overlay].forEach(el => el.addEventListener('pointerdown', onStart));
+[drawer, overlay].forEach(el => el.addEventListener('pointerdown', e => {
+  if (!drawer.classList.contains('open')) return;   // работаем только когда меню открыто
+  dragging = true;
+  startX   = e.clientX;
+  drawerW  = drawer.offsetWidth;
+  el.setPointerCapture(e.pointerId);
+}));
 
-  function onStart(e){
-    /* работаем только когда меню ОТКРЫТО */
-    if (!drawer.classList.contains('open')) return;
+window.addEventListener('pointermove', e => {
+  if (!dragging) return;
 
-    dragging = true;
-    startX   = e.clientX;
-    drawerW  = drawer.offsetWidth;
-    e.target.setPointerCapture(e.pointerId);
+  const dx = e.clientX - startX;                // ← отрицательно / → положительно
+  let translate = 0, scale = 1;
+
+  if (dx >= 0){                                 // тащим вправо (закрываем)
+    translate = Math.min(dx, drawerW);
+  } else {                                      // тащим влево — JELLY-эффект
+    const stretch = Math.min(Math.abs(dx), drawerW * 0.1); // макс 10 % ширины
+    scale = 1 + (stretch / drawerW) * 0.6;      // до +6 % масштаба
   }
 
-  window.addEventListener('pointermove', e => {
-    if (!dragging) return;
+  drawer.style.transform  = `translateX(${translate}px) scaleX(${scale})`;
+  overlay.style.opacity   = 1 - translate / drawerW;
+});
 
-    const dx        = Math.max(0, e.clientX - startX);   // влево не двигаем
-    const translate = Math.min(dx, drawerW);            // 0 … width
+window.addEventListener('pointerup', finish);
+window.addEventListener('pointercancel', finish);
 
-    drawer .style.transform = `translateX(${translate}px)`;
-    overlay.style.opacity   = 1 - translate / drawerW;
-  });
+function finish(e){
+  if (!dragging) return;
+  dragging = false;
 
-  window.addEventListener('pointerup',   finishDrag);
-  window.addEventListener('pointercancel', finishDrag);
+  const dx      = e.clientX - startX;
+  const closed  =  dx > drawerW * 0.30;               // >30 % вправо = закрыть
 
-  function finishDrag(e){
-    if (!dragging) return;
-    dragging = false;
-
-    const dx       = e.clientX - startX;
-    const closed   = dx > drawerW * 0.30;               // 30 % порог
-    drawer .style.transform = '';
-    overlay.style.opacity   = '';
-    setOpen(!closed);
-  }
+  drawer.style.transform = '';                        // снимаем inline-style
+  overlay.style.opacity  = '';
+  setOpen(!closed);                                   // закрываем или оставляем
+}
 });
