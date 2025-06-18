@@ -999,48 +999,38 @@ body{
               color: #999;
             }
 /* ——————————— Секция «О художнике» ———————————— */
-.artist-section {
-  background: #FDFBF7;
-  padding: 80px 0;
-}
-.artist-section .section-title {
-  font: 64px/1 'EB Garamond', serif;
-  margin-bottom: 40px;
-}
-/* Flex-контейнер для портрета + текста */
-.artist-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-}
-
-/* Колонка с изображением */
-.artist-img {
-  flex: 0 0 360px;     /* фикс-ширина на десктопе */
-}
-.artist-img img {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  object-fit: cover;
-}
-
-/* Колонка с текстом */
-.artist-info {
-  flex: 1;
-}
-.artist-info h3 {
-  font: 32px/1.2 'EB Garamond', serif;
-  margin-bottom: 16px;
-}
-.artist-info p {
-  font: 18px/1.6 'Segoe UI', sans-serif;
-  color: #333;
-  margin-bottom: 16px;
-}
-.artist-info p:last-child {
-  margin-bottom: 0;
-}
+/* ---------------------- О ХУДОЖНИКЕ ---------------------- */
+    .artist {
+      padding: 71px 0;
+    }
+      .artist-wrap {
+        width: 1528px;
+        margin: 0 auto;
+      }
+      .artist-head {
+        margin-bottom: 48px;
+      }
+        .artist-head h2 {
+          font: 64px/1 'EB Garamond', serif;
+          margin: 0;
+        }
+      .artist-content {
+        display: flex;
+        gap: 40px;
+      }
+        .artist-photo {
+          flex: 0 0 40%;
+        }
+          .artist-photo img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+          }
+        .artist-text {
+          flex: 1;
+          font: 20px/1.6 'Segoe UI', sans-serif;
+          color: #333;
+        }
 
 
 
@@ -1178,7 +1168,8 @@ body.no-scroll{
 
   /* контейнер растягиваем на всю ширину контентной области */
   .gallery-wrap{width:auto;margin-left:56px;margin-right:56px;}
-
+  .news-wrap{width:auto;margin-left:56px;margin-right:56px;}
+  .artist-wrap{width:auto;margin-left:56px;margin-right:56px;}
   /* masonry через grid-auto-flow:dense */
   .gallery-grid{
     grid-template-columns:repeat(2, 1fr);      /* две колонки одинаковой ширины */
@@ -1308,6 +1299,18 @@ body.no-scroll{
   /* заголовок чуть меньше */
   .news-head h2 { font-size: 48px; }
   .view-all     { font-size: 18px; }
+  .artist-wrap {
+    width: 100%;
+    padding: 0 24px 96px; /* совпадает с галереей */
+  }
+  .artist-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .artist-photo {
+    width: 80%;
+  }
+  .artist-head h2 { font-size: 48px; }
 }
 
 /* ========== МОБИЛЬНЫЙ ≤767px ========== */
@@ -1348,7 +1351,21 @@ body.no-scroll{
   }
   .news-head h2 { font-size: 36px; }
   .view-all     { font-size: 16px; }
+
+  .artist-wrap {
+    width: 100%;
+    padding: 0 24px 64px; /* совпадает с галереей */
+  }
+  .artist-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .artist-photo {
+    width: 100%;
+  }
+  .artist-head h2 { font-size: 36px; }
 }
+
 
 
 
