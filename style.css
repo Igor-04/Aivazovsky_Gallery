@@ -1119,7 +1119,41 @@ body{
   color: rgba(255,255,255,.7);
 }
 
+/* ================= Адаптив футера ================= */
+@media (max-width: 767px) {
+  /* Одна колонка, элементы по центру */
+  .footer-cols {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-logos {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .footer-logos img {
+    max-width: 120px;
+  }
+}
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Две колонки для планшета */
+  .footer-cols {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .footer-logos {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* Три колонки для ноутбуков */
+  .footer-cols {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+}
 
 
       
