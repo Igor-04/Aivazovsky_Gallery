@@ -998,7 +998,49 @@ body{
               font: 14px/1 'Segoe UI', sans-serif;
               color: #999;
             }
+/* ——————————— Секция «О художнике» ———————————— */
+.artist-section {
+  background: #FDFBF7;
+  padding: 80px 0;
+}
+.artist-section .section-title {
+  font: 64px/1 'EB Garamond', serif;
+  margin-bottom: 40px;
+}
+/* Flex-контейнер для портрета + текста */
+.artist-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
 
+/* Колонка с изображением */
+.artist-img {
+  flex: 0 0 360px;     /* фикс-ширина на десктопе */
+}
+.artist-img img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Колонка с текстом */
+.artist-info {
+  flex: 1;
+}
+.artist-info h3 {
+  font: 32px/1.2 'EB Garamond', serif;
+  margin-bottom: 16px;
+}
+.artist-info p {
+  font: 18px/1.6 'Segoe UI', sans-serif;
+  color: #333;
+  margin-bottom: 16px;
+}
+.artist-info p:last-child {
+  margin-bottom: 0;
+}
 
 
 
