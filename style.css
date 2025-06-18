@@ -637,6 +637,16 @@ body.no-scroll{
   }
   .news-grid {
     display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .news-grid .col {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    display: flex;
     flex-direction: column;
     gap: 16px;
   }
