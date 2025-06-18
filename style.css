@@ -1278,16 +1278,6 @@ body.no-scroll{
 }
 
 
-
-
-/* ========== КОНТЕЙНЕР ========== */
-
-
-
-/* ========== ЗАГОЛОВОК ========== */
-
-
-
 @media (max-width:1279px) and (min-width:768px) {
   .news-wrap {
     width: 100%;
@@ -1360,6 +1350,10 @@ body.no-scroll{
   .news-head h2 { font-size: 36px; }
   .view-all     { font-size: 16px; }
 
+  
+ .artist{
+  padding: 1px 0;
+ }
   .artist-wrap {
     width: 100%;
     padding: 0 24px 64px; /* совпадает с галереей */
