@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const burger  = document.querySelector('.burger');
@@ -61,4 +63,62 @@ function finish(e){
   overlay.style.opacity  = '';
   setOpen(!closed);                                   // закрываем или оставляем
 }
+
+
+
+/* ------ Автоподтягивание следующего слайда в новостях ------ */
+  const newsSection = document.getElementById('news');
+  const newsGrid    = document.querySelector('.news-grid');
+  let teaseTimer;
+  let lastTease = 0;
+
+  if (newsSection && newsGrid){
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && window.innerWidth <= 767){
+          maybeTease();
+        }
+      });
+    }, {threshold: 0.5});
+    observer.observe(newsSection);
+  }
+
+  function maybeTease(){
+    const now = Date.now();
+    const cooldown = 5 * 60 * 1000; // раз в пять минут
+    if (now - lastTease < cooldown) return;
+    lastTease = now;
+    teaseOnce();
+  }
+
+  function teaseOnce(){
+    clearTimeout(teaseTimer);
+    const slide = newsGrid.querySelector('.col');
+    if (!slide) return;
+    const move = slide.clientWidth * 0.3;
+    const overshoot = slide.clientWidth * 0.05;
+    newsGrid.scrollBy({left: move + overshoot, behavior: 'smooth'});
+    teaseTimer = setTimeout(() => {
+      newsGrid.scrollBy({left: -(move + overshoot), behavior: 'smooth'});
+    }, 800);
+  }
 });
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Если перезагрузили страницу (не первый заход) и в URL есть #gallery
+  const navEntries = performance.getEntriesByType("navigation");
+  const isReload = navEntries.length && navEntries[0].type === "reload";
+  if (isReload && window.location.hash === "#gallery") {
+    // Убираем хэш без перезагрузки
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+    // Сбрасываем прокрутку наверх
+    window.scrollTo(0, 0);
+  }
+});
+
+
+
+
+
+
