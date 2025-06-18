@@ -190,16 +190,20 @@ body{
         }
             .gallery-head{
             display:flex;
-            align-items:flex-end;
+            justify-content: space-between;
+            align-items: baseline;    /* выравниваем по текстовой базовой линии */
             margin-bottom:28px;
             }
                 .gallery-head h2{
                 font:64px/1 'EB Garamond',serif;
+                margin: 0;
                 }
                 .view-all{
                 margin-left:auto;                  
                 font:20px 'EB Garamond',serif;
-                color:#007672;text-decoration:none;
+                color:#007672;
+                text-decoration:none;
+                transition: opacity .2s;
                 }
                 .view-all:hover{opacity:.7;}
 
@@ -353,4 +357,124 @@ body{
 body.no-scroll{
   overflow:hidden;
   touch-action:none;        /* фикс для iOS Safari */
+}
+
+
+
+
+
+
+
+
+/* ------------------------------------- */
+/* ----------  десктоп ≥1344 — ваш существующий код  ---------- */
+/*  осталось без изменений                                    */
+
+
+
+/* =================================================================
+   НОУТ-ЭКРАН 1024-1343 PX — 2-КОЛОНОЧНЫЙ “MASONRY”
+   ================================================================ */
+@media (min-width:1024px) and (max-width:1343px){
+
+  /* контейнер растягиваем на всю ширину контентной области */
+  .gallery-wrap{width:auto;margin-left:56px;margin-right:56px;}
+
+  /* masonry через grid-auto-flow:dense */
+  .gallery-grid{
+    grid-template-columns:repeat(2, 1fr);      /* две колонки одинаковой ширины */
+    grid-auto-rows:8px;                         /* базовая ячейка → 8 px          */
+    grid-auto-flow:dense;                       /* “заполнять” пустоты            */
+  }
+
+  /*  задаём, во сколько row-span должна “упасть” каждая картинка  */
+  .art.big   {grid-row:span 53;}   /* 53 × 8 px ≈ 422  */
+  .art.mid   {grid-row:span 26;}   /* 26 × 8 px ≈ 204  */
+  .art.sm    {grid-row:span 26;}   /*  »»              */
+
+  /* убираем ручные column/row-координаты */
+  .art{grid-column:auto!important;grid-row:auto!important;}
+}
+
+
+
+/* =================================================================
+   ПЛАНШЕТ 768-1023 PX — ПЛИТКА  (2-3 В РЯД)
+   ================================================================ */
+@media (min-width:768px) and (max-width:1023px){
+
+  .gallery{padding:96px 24px 0;}
+  .gallery-head{
+    flex-direction:column;align-items:flex-start;gap:24px;
+  }
+  .gallery-head h2{font-size:48px;}
+
+  .gallery-wrap{width:100%;margin:0;}
+
+  .gallery-grid{
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    grid-auto-rows:1fr;
+    gap:18px;
+  }
+  .art{grid-area:auto!important;}
+}
+
+
+
+/* =================================================================
+   МОБИЛЬНЫЙ ≤767 PX — ОДНА КОЛОНКА ИЛИ H-SCROLL
+   ================================================================ */
+@media (max-width: 767px) {
+ 
+  /* Контейнер секции — без лишних margin */
+  .gallery-wrap {
+    width: 100%;
+    margin: 0;
+   
+  }
+
+  /* Заголовок — по краям */
+  .gallery-head {
+    display: flex;
+    flex-direction: row;         
+    justify-content: space-between;
+    align-items: baseline;       /* по базовой линии заголовка и ссылки */
+    margin-bottom: 24px;
+    gap: 0;                       /* сбрасываем вертикальный gap */
+  }
+  .gallery-head h2 { font-size: 36px;  margin: 0; }
+  .view-all       { font-size: 18px; margin: 0;               /* сбрасываем любое смещение */}
+
+  /* FLEX-контейнер вместо grid */
+  .gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* Первая картинка — 100% */
+  .gallery-grid .big {
+    flex: 1 1 100%;
+    aspect-ratio: 4/3;
+  }
+
+  /* Вторая и третья — по 50% (- половина gap) */
+  .gallery-grid .art:not(.big) {
+    flex: 1 1 calc(50% - 8px);
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Скрываем всё, что идёт после третьей */
+  .gallery-grid .art:nth-child(n + 4) {
+    display: none;
+  }
+
+  /* Картинка во весь блок */
+  .gallery-grid .art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
 }
