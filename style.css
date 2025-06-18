@@ -59,9 +59,9 @@ body{
             }
             .burger{
                 display:none;                 /* покажем в media */
-                margin-left:auto;             /* толкает к правому краю */
-                padding:0 24px;               /* «ожерелье» справа 24 px */
-                height:64px;                  /* такая же высота, как моб-шапка */
+                margin-left:auto;             
+                padding:0 24px;               
+                height:64px;                  
                 background:none;border:0;cursor:pointer;
                 }
 
@@ -86,19 +86,19 @@ body{
         padding-left:120px;
     }
         .hero_inner{
-        /* вертикальная колонка: слоган над кнопкой */
+        
             display:flex;
             flex-direction:column;
-            gap:40px;                    /* зазор между h1 и кнопкой */
+            gap:40px;                    
         }
             .hero_inner h1{
                 font-family:'EB Garamond',serif;
                 font-weight:400;
-                font-size:120px;             /* как в макете */
-                line-height:1.08;            /* чуть теснее, чем 1.1 */
+                font-size:120px;             
+                line-height:1.08;           
                 color:#fff;
-                max-width:830px;             /* ограничиваем строку */
-                text-shadow:0 2px 4px rgba(0,0,0,.35); /* читаемость */
+                max-width:830px;             
+                text-shadow:0 2px 4px rgba(0,0,0,.35); 
             }
             @media (max-width:1280px){
                 .hero_inner h1{
@@ -106,7 +106,7 @@ body{
                 }
             }
             .btn{
-                align-self:flex-start;       /* остаётся на левой колонке */
+                align-self:flex-start;       
                 padding:18px 40px;
                 background:#007672;
                 color:#fff;
@@ -127,9 +127,7 @@ body{
             line-height:1;
             cursor:pointer;
            
-            }
-
-            /* Бургер-иконка превращается в крест при .open */
+            }            
               .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg); z-index:81;}
               .burger.open span:nth-child(2){opacity:0;}
               .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg); z-index:81;}
@@ -145,7 +143,7 @@ body{
                 transform:translateX(100%);
                 transition:transform .45s cubic-bezier(.22,.61,.36,1);
                 will-change:transform;
-                touch-action:pan-y;   /* разрешаем горизонтальный drag внутри */
+                touch-action:pan-y;   
                 z-index:80;
 }
               .mobile-menu a,
@@ -156,14 +154,13 @@ body{
                 border-bottom:1px solid rgba(255,255,255,.08);
               }
               .mobile-menu a:last-child,
-                .mobile-menu .lang{border:none;}            /* убираем линию у последнего */
+                .mobile-menu .lang{border:none;}            
 
                 .mobile-menu a:active,
                 .mobile-menu .lang:active{
                   background:rgba(255,255,255,.1);
                 }
 
-              /* затемнение */
               .menu-overlay{
                 position:fixed;inset:0;
                 background:rgba(0,0,0,.5);
@@ -172,8 +169,6 @@ body{
                 opacity:0;transition:.3s;
                  touch-action:pan-y;
               }
-
-              /* открытое состояние (добавляем класс .open JS-ом) */
               .mobile-menu.open{transform:translateX(0);}
               .menu-overlay.open{opacity:1;}
 
@@ -191,7 +186,7 @@ body{
             .gallery-head{
             display:flex;
             justify-content: space-between;
-            align-items: baseline;    /* выравниваем по текстовой базовой линии */
+            align-items: baseline;    
             margin-bottom:28px;
             }
                 .gallery-head h2{
@@ -237,31 +232,138 @@ body{
                 }
                 .art:hover img{transform:scale(1.07);}
 
-/* ---------- Адаптив ≤1023 px: плитка ---------- */
-@media (max-width:1023px){
-  .gallery{padding:96px 24px 0;}
-  .gallery-head{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:24px;
-  }
-  .gallery-head h2{font-size:48px;}
+/* ------------------------- НОВОСТИ ---------------------------- */
+    .news-wrap {
+      width:1528px;
+      margin: 0 auto;
+    }
+      .news-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin: 48px 0;
+      }
+        .news-head h2 {
+          font: 64px/1 'EB Garamond', serif;
+          margin: 0;
+        }
+        .view-all {
+          font: 20px 'EB Garamond', serif;
+          color: #007672;
+          text-decoration: none;
+        }
+        .view-all:hover { opacity: .7; }
 
-  .gallery-wrap{width:100%;}
-  .gallery-grid{
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-    grid-auto-rows:1fr;             /* плитка                       */
-  }
-  .art{grid-area:auto!important;}   /* снимаем фикс-позицию         */
-}
+/* ========== ТРИ СТОЛБЦА ========== */
+      .news-grid {
+        display: flex;
+        gap: 15px;
+      }
+        .news-grid .col {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+/* ========== ОБЩЕЕ ДЛЯ ВСЕХ КАРТОЧЕК ========== */
+        .news-item {
+          background: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-sizing: border-box;
+          transition: transform .2s ease, box-shadow .2s ease;
+          cursor: pointer; /* показываем, что блок кликабелен */
+        }
+        .news-item:hover {
+          transform: translateY(-6px);  /* смещение вверх */
+          box-shadow: 0 12px 24px rgba(0,0,0,.12); /* мягкая тень */
+        }
+        .news-item {
+          overflow: visible;
+        }
+        .news-item > * {
+          position: relative;
+          z-index: 1;
+        }
+        .news-item:hover {
+          background: #fafafa;
+        }
+        .news-item img {
+          width: 100%;
+          display: block;
+          border-radius: 10px;
+          object-fit: cover;
+        }
 
-/* ---------- Мобильный ≤767 px ---------- */
-@media (max-width:767px){
-  .gallery{padding:64px 24px 0;}
-  .gallery-head h2{font-size:36px;}
-  .view-all{font-size:18px;}
-}
-            
+          /* ===== TYPE 1 ===== */
+          .news-item.type1 {
+            height: 445px;
+          }
+            .news-item.type1 img {
+              height: 260px;
+            }
+            .news-item.type1 h3 {
+              margin: 15px;
+              font: 30px 'EB Garamond', serif;
+              font-weight: 500;
+            }
+            .news-item.type1 p {
+              margin: 0 16px 12px;
+              font: 16px/1.5 'Segoe UI', sans-serif;
+              color: #333;
+            }
+            .news-item.type1 time {
+              display: block;
+              margin: 0 16px 16px;
+              font: 16px/1 'Segoe UI', sans-serif;
+              color: #666;
+            }
+
+          /* ===== TYPE 2 ===== */
+          .news-item.type2 {
+            height: 292px; /* две мелких по 138 + gap 15 */
+            padding: 16px;
+
+          }
+            .news-item.type2 h3 {
+              margin: 0 0 8px;
+              font: 30px/1.3 'EB Garamond', serif;
+              font-weight: 500;
+            }
+            .news-item.type2 p {
+              margin: 0 0 12px;
+              font: 16px/1.5 'Segoe UI', sans-serif;
+              color: #333;
+            }
+            .news-item.type2 time {
+              font: 14px/1 'Segoe UI', sans-serif;
+              color: #999;
+            }
+
+          /* ===== TYPE 3 ===== */
+          .news-item.type3 {
+            height: 138px;
+            padding: 16px;
+          }
+            .news-item.type3 h3 {
+              margin: 0 0 8px;
+              font: 30px/1.4 'EB Garamond', serif;
+              font-weight: 500;
+            }
+            .news-item.type3 p {
+              margin: 0 0 12px;
+              font: 16px/1.4 'Segoe UI', sans-serif;
+              color: #555;
+            }
+            .news-item.type3 time {
+              font: 14px/1 'Segoe UI', sans-serif;
+              color: #999;
+            }
+
+
+
+
+      
 
 
 
@@ -278,6 +380,11 @@ body{
   .hero_img        { height: calc(100vh - 64px); padding-left: 24px; }
   .hero_inner h1   { font-size: clamp(40px, 10vw, 56px); max-width: 90%; }
   .btn             { font-size: 16px; padding: 14px 32px; }
+
+  /* ======== Галерея работ ============= */
+  .gallery{padding:64px 24px 0;}
+  .gallery-head h2{font-size:36px;}
+  .view-all{font-size:18px;}
 }
 
 /* ---------------------------------------------------------------
@@ -306,6 +413,22 @@ body{
   }
 
   .btn        { font-size: 18px; padding: 16px 36px; }  /* чуть меньше */
+
+  /* ======== Галерея работ ============= */
+  .gallery{padding:96px 24px 0;}
+  .gallery-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:24px;
+  }
+  .gallery-head h2{font-size:48px;}
+
+  .gallery-wrap{width:100%;}
+  .gallery-grid{
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    grid-auto-rows:1fr;             /* плитка                       */
+  }
+  .art{grid-area:auto!important;}   /* снимаем фикс-позицию         */
 }
 
 /* ---------------------------------------------------------------
@@ -364,11 +487,6 @@ body.no-scroll{
 
 
 
-
-
-/* ------------------------------------- */
-/* ----------  десктоп ≥1344 — ваш существующий код  ---------- */
-/*  осталось без изменений                                    */
 
 
 
@@ -483,154 +601,62 @@ body.no-scroll{
 
 
 /* ========== КОНТЕЙНЕР ========== */
-.news{
-  
-}
-.news-wrap {
-  width:1528px;
-  margin: 0 auto;
-}
+
+
 
 /* ========== ЗАГОЛОВОК ========== */
-.news-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin: 48px 0;
-}
-.news-head h2 {
-  font: 64px/1 'EB Garamond', serif;
-  margin: 0;
-}
-.view-all {
-  font: 20px 'EB Garamond', serif;
-  color: #007672;
-  text-decoration: none;
-}
-.view-all:hover { opacity: .7; }
 
-/* ========== ТРИ СТОЛБЦА ========== */
-.news-grid {
-  display: flex;
-  gap: 15px;
-}
-/* каждый столбец = вертикальный flex */
-.news-grid .col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
-/* ========== ОБЩЕЕ ДЛЯ ВСЕХ КАРТОЧЕК ========== */
-.news-item {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-.news-item img {
-  width: 100%;
-  display: block;
-  border-radius: 10px;
-  object-fit: cover;
-}
 
-/* ===== TYPE 1 ===== */
-.news-item.type1 {
-  height: 445px;
-}
-.news-item.type1 img {
-  height: 260px;
-}
-.news-item.type1 h3 {
-  margin: 15px;
-  font: 30px 'EB Garamond', serif;
-  font-weight: 500;
-}
-.news-item.type1 p {
-  margin: 0 16px 12px;
-  font: 16px/1.5 'Segoe UI', sans-serif;
-  color: #333;
-}
-.news-item.type1 time {
-  display: block;
-  margin: 0 16px 16px;
-  font: 16px/1 'Segoe UI', sans-serif;
-  color: #666;
-}
-
-/* ===== TYPE 2 ===== */
-.news-item.type2 {
-  height: 292px; /* две мелких по 138 + gap 15 */
-  padding: 16px;
-
-}
-.news-item.type2 h3 {
-  margin: 0 0 8px;
-  font: 30px/1.3 'EB Garamond', serif;
-   font-weight: 500;
-}
-.news-item.type2 p {
-  margin: 0 0 12px;
-  font: 16px/1.5 'Segoe UI', sans-serif;
-  color: #333;
-}
-.news-item.type2 time {
-  font: 14px/1 'Segoe UI', sans-serif;
-  color: #999;
-}
-
-/* ===== TYPE 3 ===== */
-.news-item.type3 {
-  height: 138px;
-  padding: 16px;
-}
-.news-item.type3 h3 {
-  margin: 0 0 8px;
-  font: 30px/1.4 'EB Garamond', serif;
-   font-weight: 500;
-}
-.news-item.type3 p {
-  margin: 0 0 12px;
-  font: 16px/1.4 'Segoe UI', sans-serif;
-  color: #555;
-}
-.news-item.type3 time {
-  font: 14px/1 'Segoe UI', sans-serif;
-  color: #999;
-}
-
-/* ========== АДАПТИВ ≤1023px (одна колонка) ========== */
-@media (max-width: 1023px) {
+@media (max-width:1279px) and (min-width:768px) {
   .news-wrap {
     width: 100%;
-    padding: 0 24px 96px;
+    padding: 0 48px 96px;
   }
-  .news-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-  }
-  .news-head h2 { font-size: 48px; }
-  .view-all { font-size: 18px; }
   .news-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 24px;
+    grid-template-columns: 1fr 1fr;  /* две колонки */
+    gap: 20px;
   }
+
+  /* Type 1 всегда тянется на обе колонки */
+  .news-item.type1 {
+    grid-column: 1 / -1;
+  }
+
+  /* заголовок чуть меньше */
+  .news-head h2 { font-size: 48px; }
+  .view-all     { font-size: 18px; }
 }
 
 /* ========== МОБИЛЬНЫЙ ≤767px ========== */
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .news-wrap {
+    width: 100%;
     padding: 0 16px 64px;
   }
-  .news-head h2 { font-size: 36px; }
-  .view-all { font-size: 18px; }
   .news-grid {
-    row-gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
+  .news-item.type1 {
+    height: auto;            /* адаптивная высота */
+  }
+  .news-item.type2,
+  .news-item.type3 {
+    height: auto;
+  }
+
+  .news-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+  }
+  .news-head h2 { font-size: 36px; }
+  .view-all     { font-size: 16px; }
 }
+
 
 
