@@ -998,14 +998,16 @@ body{
               font: 14px/1 'Segoe UI', sans-serif;
               color: #999;
             }
-/* ——————————— Секция «О художнике» ———————————— */
+
 /* ---------------------- О ХУДОЖНИКЕ ---------------------- */
     .artist {
       padding: 71px 0;
+      
     }
       .artist-wrap {
         width: 1528px;
         margin: 0 auto;
+        
       }
       .artist-head {
         margin-bottom: 48px;
@@ -1017,6 +1019,8 @@ body{
       .artist-content {
         display: flex;
         gap: 40px;
+        background-color: white;
+        border-radius: 20px;
       }
         .artist-photo {
           flex: 0 0 40%;
@@ -1030,6 +1034,10 @@ body{
           flex: 1;
           font: 20px/1.6 'Segoe UI', sans-serif;
           color: #333;
+        }
+        .artist-text h2{
+           font: 40px/1.4 'EB Garamond', serif;
+           font-weight: 570;
         }
 
 
