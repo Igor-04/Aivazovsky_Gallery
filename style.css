@@ -1044,6 +1044,83 @@ body{
         }
 
 
+/* =================== ФУТЕР =================== */
+.site-footer {
+  background: #05181D;
+  color: #fff;
+  padding: 60px 0 40px;
+}
+.site-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.site-footer a:hover {
+  opacity: .7;
+}
+
+/* общий контейнер */
+.site-footer .container {
+  max-width: 1274px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* 4-колоночная сетка */
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* названия колонок */
+.footer-title {
+  font: 24px/1 'EB Garamond', serif;
+  margin-bottom: 16px;
+}
+
+/* навигация */
+.footer-nav a {
+  display: block;
+  margin-bottom: 8px;
+  font: 16px/1.4 'Segoe UI', sans-serif;
+}
+
+/* контакты и часы */
+.footer-contacts,
+.footer-hours {
+  list-style: none;
+  font: 16px/1.4 'Segoe UI', sans-serif;
+}
+.footer-contacts .ico,
+.footer-hours .ico {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* логотипы партнёров */
+.footer-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+.footer-logos img {
+  max-width: 270px;
+  height: auto;
+}
+
+/* нижняя строка */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 20px;
+  text-align: center;
+  font: 14px/1 'Segoe UI', sans-serif;
+  color: rgba(255,255,255,.7);
+}
+
+
+
 
       
 
