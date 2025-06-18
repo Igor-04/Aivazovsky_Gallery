@@ -10,6 +10,7 @@ body{
     font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
     height: 100%;
     background-color: #FFFBF2;
+     overflow-x: hidden;
 }
 .container {
   width: 100%;
@@ -240,6 +241,9 @@ body{
                 .art:hover img{transform:scale(1.07);}
 
 /* ------------------------- НОВОСТИ ---------------------------- */
+ .news {
+    margin-bottom: 48px;
+  }
     .news-wrap {
       width:1528px;
       margin: 0 auto;
@@ -795,7 +799,9 @@ body.no-scroll{
 /* ========== МОБИЛЬНЫЙ ≤767px ========== */
 
 @media (max-width:767px) {
-
+ .news {
+    margin-bottom: 18px;
+  }
   .news-wrap {
     width: 100%;
     padding: 0 24px 0px; /* совпадает с галереей */
